@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bzzn.dynamicdatasource.config.mapper.AirDataMapper">
+    <resultMap id="BaseResultMap" type="com.bzzn.dynamicdatasource.datasource.entity.JgAirData">
+        <id column="id"  property="id" />
+        <result column="O3"  property="o3" />
+        <result column="CO"  property="co" />
+        <result column="NO2" property="no2" />
+        <result column="SO2"  property="so2" />
+        <result column="AQI"  property="aqi" />
+        <result column="WD"  property="wd" />
+        <result column="WS"  property="ws" />
+        <result column="PM10"  property="pm10" />
+        <result column="PM25"  property="pm25" />
+        <result column="RH"  property="rh" />
+        <result column="TEMP" property="temp" />
+        <result column="StationCode"  property="stationcode" />
+        <result column="PointName"  property="pointname" />
+        <result column="Latitude"  property="latitude" />
+        <result column="TVOC"  property="tvoc" />
+        <result column="TIME" property="time" />
+    </resultMap>
+
+    <select id="getById" parameterType="long" resultType="string">
+        select CO from jg_air_data where id = #{id}
+    </select>
+
+    <select id="getByO3" parameterType="string" resultType="java.lang.String">
+        select distinct O3 from jg_air_data where O3 = #{O3}
+    </select>
+</mapper>

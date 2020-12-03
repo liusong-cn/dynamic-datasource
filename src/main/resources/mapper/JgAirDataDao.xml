@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bzzn.dynamicdatasource.datasource.dao.JgAirDataDao">
+  <resultMap id="BaseResultMap" type="com.bzzn.dynamicdatasource.datasource.entity.JgAirData">
+    <id column="id"  property="id" />
+    <result column="O3"  property="o3" />
+    <result column="CO"  property="co" />
+    <result column="NO2" property="no2" />
+    <result column="SO2"  property="so2" />
+    <result column="AQI"  property="aqi" />
+    <result column="WD"  property="wd" />
+    <result column="WS"  property="ws" />
+    <result column="PM10"  property="pm10" />
+    <result column="PM25"  property="pm25" />
+    <result column="RH"  property="rh" />
+    <result column="TEMP" property="temp" />
+    <result column="StationCode"  property="stationcode" />
+    <result column="PointName"  property="pointname" />
+    <result column="Latitude"  property="latitude" />
+    <result column="TVOC"  property="tvoc" />
+    <result column="TIME" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, O3, CO, NO2, SO2, AQI, WD, WS, PM10, PM25, RH, `TEMP`, StationCode, PointName, 
+    Latitude, TVOC, `TIME`
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id,O3,CO
+
+    from jg_air_data
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from jg_air_data
+    where id = #{id}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bzzn.dynamicdatasource.datasource.entity.JgAirData" useGeneratedKeys="true">
+    insert into jg_air_data (O3, CO, NO2, 
+      SO2, AQI, WD, WS, 
+      PM10, PM25, RH, `TEMP`, 
+      StationCode, PointName, Latitude, 
+      TVOC, `TIME`)
+    values (#{o3,jdbcType=VARCHAR}, #{co,jdbcType=VARCHAR}, #{no2,jdbcType=VARCHAR}, 
+      #{so2,jdbcType=VARCHAR}, #{aqi,jdbcType=VARCHAR}, #{wd,jdbcType=VARCHAR}, #{ws,jdbcType=VARCHAR}, 
+      #{pm10,jdbcType=VARCHAR}, #{pm25,jdbcType=VARCHAR}, #{rh,jdbcType=VARCHAR}, #{temp,jdbcType=VARCHAR}, 
+      #{stationcode,jdbcType=VARCHAR}, #{pointname,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, 
+      #{tvoc,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bzzn.dynamicdatasource.datasource.entity.JgAirData" useGeneratedKeys="true">
+    insert into jg_air_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="o3 != null">
+        O3,
+      </if>
+      <if test="co != null">
+        CO,
+      </if>
+      <if test="no2 != null">
+        NO2,
+      </if>
+      <if test="so2 != null">
+        SO2,
+      </if>
+      <if test="aqi != null">
+        AQI,
+      </if>
+      <if test="wd != null">
+        WD,
+      </if>
+      <if test="ws != null">
+        WS,
+      </if>
+      <if test="pm10 != null">
+        PM10,
+      </if>
+      <if test="pm25 != null">
+        PM25,
+      </if>
+      <if test="rh != null">
+        RH,
+      </if>
+      <if test="temp != null">
+        `TEMP`,
+      </if>
+      <if test="stationcode != null">
+        StationCode,
+      </if>
+      <if test="pointname != null">
+        PointName,
+      </if>
+      <if test="latitude != null">
+        Latitude,
+      </if>
+      <if test="tvoc != null">
+        TVOC,
+      </if>
+      <if test="time != null">
+        `TIME`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="o3 != null">
+        #{o3,jdbcType=VARCHAR},
+      </if>
+      <if test="co != null">
+        #{co,jdbcType=VARCHAR},
+      </if>
+      <if test="no2 != null">
+        #{no2,jdbcType=VARCHAR},
+      </if>
+      <if test="so2 != null">
+        #{so2,jdbcType=VARCHAR},
+      </if>
+      <if test="aqi != null">
+        #{aqi,jdbcType=VARCHAR},
+      </if>
+      <if test="wd != null">
+        #{wd,jdbcType=VARCHAR},
+      </if>
+      <if test="ws != null">
+        #{ws,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10 != null">
+        #{pm10,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25 != null">
+        #{pm25,jdbcType=VARCHAR},
+      </if>
+      <if test="rh != null">
+        #{rh,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null">
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="stationcode != null">
+        #{stationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pointname != null">
+        #{pointname,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="tvoc != null">
+        #{tvoc,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bzzn.dynamicdatasource.datasource.entity.JgAirData">
+    update jg_air_data
+    <set>
+      <if test="o3 != null">
+        O3 = #{o3,jdbcType=VARCHAR},
+      </if>
+      <if test="co != null">
+        CO = #{co,jdbcType=VARCHAR},
+      </if>
+      <if test="no2 != null">
+        NO2 = #{no2,jdbcType=VARCHAR},
+      </if>
+      <if test="so2 != null">
+        SO2 = #{so2,jdbcType=VARCHAR},
+      </if>
+      <if test="aqi != null">
+        AQI = #{aqi,jdbcType=VARCHAR},
+      </if>
+      <if test="wd != null">
+        WD = #{wd,jdbcType=VARCHAR},
+      </if>
+      <if test="ws != null">
+        WS = #{ws,jdbcType=VARCHAR},
+      </if>
+      <if test="pm10 != null">
+        PM10 = #{pm10,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25 != null">
+        PM25 = #{pm25,jdbcType=VARCHAR},
+      </if>
+      <if test="rh != null">
+        RH = #{rh,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null">
+        `TEMP` = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="stationcode != null">
+        StationCode = #{stationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="pointname != null">
+        PointName = #{pointname,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        Latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="tvoc != null">
+        TVOC = #{tvoc,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        `TIME` = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bzzn.dynamicdatasource.datasource.entity.JgAirData">
+    update jg_air_data
+    set O3 = #{o3,jdbcType=VARCHAR},
+      CO = #{co,jdbcType=VARCHAR},
+      NO2 = #{no2,jdbcType=VARCHAR},
+      SO2 = #{so2,jdbcType=VARCHAR},
+      AQI = #{aqi,jdbcType=VARCHAR},
+      WD = #{wd,jdbcType=VARCHAR},
+      WS = #{ws,jdbcType=VARCHAR},
+      PM10 = #{pm10,jdbcType=VARCHAR},
+      PM25 = #{pm25,jdbcType=VARCHAR},
+      RH = #{rh,jdbcType=VARCHAR},
+      `TEMP` = #{temp,jdbcType=VARCHAR},
+      StationCode = #{stationcode,jdbcType=VARCHAR},
+      PointName = #{pointname,jdbcType=VARCHAR},
+      Latitude = #{latitude,jdbcType=VARCHAR},
+      TVOC = #{tvoc,jdbcType=VARCHAR},
+      `TIME` = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

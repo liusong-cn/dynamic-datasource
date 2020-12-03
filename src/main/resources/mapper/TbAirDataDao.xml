@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bzzn.dynamicdatasource.dao.TbAirDataDao">
+
+    <resultMap id="BaseResultMap" type="com.bzzn.dynamicdatasource.entity.TbAirData">
+        <!--@Table tb_air_data-->
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="wsid" column="wsid" jdbcType="VARCHAR"/>
+        <result property="stationid" column="stationId" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createTime" jdbcType="VARCHAR"/>
+        <result property="pm25" column="pm25" jdbcType="VARCHAR"/>
+        <result property="pm10" column="pm10" jdbcType="VARCHAR"/>
+        <result property="temperature" column="temperature" jdbcType="VARCHAR"/>
+        <result property="humidity" column="humidity" jdbcType="VARCHAR"/>
+        <result property="windspeed" column="windSpeed" jdbcType="VARCHAR"/>
+        <result property="winddirection" column="windDirection" jdbcType="VARCHAR"/>
+        <result property="no2" column="no2" jdbcType="VARCHAR"/>
+        <result property="noc" column="noc" jdbcType="VARCHAR"/>
+        <result property="pressure" column="pressure" jdbcType="VARCHAR"/>
+        <result property="co" column="co" jdbcType="VARCHAR"/>
+        <result property="o3" column="o3" jdbcType="VARCHAR"/>
+        <result property="so3" column="so3" jdbcType="VARCHAR"/>
+        <result property="so2" column="so2" jdbcType="VARCHAR"/>
+        <result property="aqi" column="aqi" jdbcType="VARCHAR"/>
+        <result property="primaryPollutants" column="primary_pollutants" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, wsid, stationId, createTime, pm25, pm10, temperature, humidity, windSpeed, windDirection, no2, noc, pressure, co, o3, so3, so2, aqi, primary_pollutants
+        from smartdb.tb_air_data
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, wsid, stationId, createTime, pm25, pm10, temperature, humidity, windSpeed, windDirection, no2, noc, pressure, co, o3, so3, so2, aqi, primary_pollutants
+        from smartdb.tb_air_data
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, wsid, stationId, createTime, pm25, pm10, temperature, humidity, windSpeed, windDirection, no2, noc, pressure, co, o3, so3, so2, aqi, primary_pollutants
+        from smartdb.tb_air_data
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="wsid != null and wsid != ''">
+                and wsid = #{wsid}
+            </if>
+            <if test="stationid != null and stationid != ''">
+                and stationId = #{stationid}
+            </if>
+            <if test="createtime != null and createtime != ''">
+                and createTime = #{createtime}
+            </if>
+            <if test="pm25 != null and pm25 != ''">
+                and pm25 = #{pm25}
+            </if>
+            <if test="pm10 != null and pm10 != ''">
+                and pm10 = #{pm10}
+            </if>
+            <if test="temperature != null and temperature != ''">
+                and temperature = #{temperature}
+            </if>
+            <if test="humidity != null and humidity != ''">
+                and humidity = #{humidity}
+            </if>
+            <if test="windspeed != null and windspeed != ''">
+                and windSpeed = #{windspeed}
+            </if>
+            <if test="winddirection != null and winddirection != ''">
+                and windDirection = #{winddirection}
+            </if>
+            <if test="no2 != null and no2 != ''">
+                and no2 = #{no2}
+            </if>
+            <if test="noc != null and noc != ''">
+                and noc = #{noc}
+            </if>
+            <if test="pressure != null and pressure != ''">
+                and pressure = #{pressure}
+            </if>
+            <if test="co != null and co != ''">
+                and co = #{co}
+            </if>
+            <if test="o3 != null and o3 != ''">
+                and o3 = #{o3}
+            </if>
+            <if test="so3 != null and so3 != ''">
+                and so3 = #{so3}
+            </if>
+            <if test="so2 != null and so2 != ''">
+                and so2 = #{so2}
+            </if>
+            <if test="aqi != null and aqi != ''">
+                and aqi = #{aqi}
+            </if>
+            <if test="primaryPollutants != null and primaryPollutants != ''">
+                and primary_pollutants = #{primaryPollutants}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into smartdb.tb_air_data(wsid, stationId, createTime, pm25, pm10, temperature, humidity, windSpeed, windDirection, no2, noc, pressure, co, o3, so3, so2, aqi, primary_pollutants)
+        values (#{wsid}, #{stationid}, #{createtime}, #{pm25}, #{pm10}, #{temperature}, #{humidity}, #{windspeed}, #{winddirection}, #{no2}, #{noc}, #{pressure}, #{co}, #{o3}, #{so3}, #{so2}, #{aqi}, #{primaryPollutants})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update smartdb.tb_air_data
+        <set>
+            <if test="wsid != null and wsid != ''">
+                wsid = #{wsid},
+            </if>
+            <if test="stationid != null and stationid != ''">
+                stationId = #{stationid},
+            </if>
+            <if test="createtime != null and createtime != ''">
+                createTime = #{createtime},
+            </if>
+            <if test="pm25 != null and pm25 != ''">
+                pm25 = #{pm25},
+            </if>
+            <if test="pm10 != null and pm10 != ''">
+                pm10 = #{pm10},
+            </if>
+            <if test="temperature != null and temperature != ''">
+                temperature = #{temperature},
+            </if>
+            <if test="humidity != null and humidity != ''">
+                humidity = #{humidity},
+            </if>
+            <if test="windspeed != null and windspeed != ''">
+                windSpeed = #{windspeed},
+            </if>
+            <if test="winddirection != null and winddirection != ''">
+                windDirection = #{winddirection},
+            </if>
+            <if test="no2 != null and no2 != ''">
+                no2 = #{no2},
+            </if>
+            <if test="noc != null and noc != ''">
+                noc = #{noc},
+            </if>
+            <if test="pressure != null and pressure != ''">
+                pressure = #{pressure},
+            </if>
+            <if test="co != null and co != ''">
+                co = #{co},
+            </if>
+            <if test="o3 != null and o3 != ''">
+                o3 = #{o3},
+            </if>
+            <if test="so3 != null and so3 != ''">
+                so3 = #{so3},
+            </if>
+            <if test="so2 != null and so2 != ''">
+                so2 = #{so2},
+            </if>
+            <if test="aqi != null and aqi != ''">
+                aqi = #{aqi},
+            </if>
+            <if test="primaryPollutants != null and primaryPollutants != ''">
+                primary_pollutants = #{primaryPollutants},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from smartdb.tb_air_data where id = #{id}
+    </delete>
+
+</mapper>
