@@ -52,4 +52,6 @@ public interface SysTestService {
      */
     boolean deleteById(Integer id);
 
+    void methodArgs(String arg1, String arg2);
+
 }

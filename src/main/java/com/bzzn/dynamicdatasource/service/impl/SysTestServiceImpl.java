@@ -78,4 +78,10 @@ public class SysTestServiceImpl implements SysTestService {
     public boolean deleteById(Integer id) {
         return this.sysTestDao.deleteById(id) > 0;
     }
+
+    @Override
+    @DataSource(value = "mysql")
+    public void methodArgs(String arg1, String arg2) {
+        System.out.println(String.format("arg1:%s,arg2:%s",arg1,arg2));
+    }
 }

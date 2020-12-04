@@ -26,6 +26,8 @@ public class DataSourceAspect {
 
     @Around("dataSourcePointCut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
+        //获取切点上的参数，若切点为类则无
+        //Object[] args = joinPoint.getArgs();
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Class targetClass = joinPoint.getTarget().getClass();
         Method method = methodSignature.getMethod();

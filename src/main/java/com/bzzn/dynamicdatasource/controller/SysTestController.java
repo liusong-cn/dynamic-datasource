@@ -32,4 +32,9 @@ public class SysTestController {
         return this.sysTestService.queryById(id);
     }
 
+    @GetMapping("/argsTest")
+    public void argsOnMethod(String arg1,String arg2){
+        sysTestService.methodArgs(arg1,arg2);
+    }
+
 }
