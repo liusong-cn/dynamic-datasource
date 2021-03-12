@@ -26,6 +26,11 @@ public class DynamicDataSourceConfig {
    @Autowired
    private DefaultDataSourceProperties defaultDataSourceProperties;
 
+
+    /**
+     * 创建动态数据源集合
+     * @return
+     */
    @Bean
    public DynamicDataSource dynamicDataSource(){
        DynamicDataSource dynamicDataSource = new DynamicDataSource();
@@ -41,6 +46,11 @@ public class DynamicDataSourceConfig {
        return dynamicDataSource;
    }
 
+    /**
+     * 将数据源描述prop构建成datasource并放入map
+     * @param dataSourcePropertiesMap
+     * @return
+     */
    public Map<Object, Object> parseMap(Map<String, DataSourceProperties> dataSourcePropertiesMap){
        Map<Object, Object> targetMap = new HashMap<>();
        dataSourcePropertiesMap.entrySet().forEach(e ->{
